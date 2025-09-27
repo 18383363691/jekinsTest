@@ -25,7 +25,7 @@ pipeline {
         stage('Build') {
             steps {
 
-                 sh "mvn clean package" //构建maven项目
+                 sh "/opt/apache-maven-3.9.11/bin/mvn clean package" //构建maven项目
             }
         }
         stage('Deploy') {
