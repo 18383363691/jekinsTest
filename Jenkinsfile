@@ -13,8 +13,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-             def MAVEN_HOME = tool name: 'Maven', type: 'maven'
-              sh "${MAVEN_HOME}/bin/mvn clean package" //构建maven项目
+                script{
+                 def MAVEN_HOME = tool name: 'Maven', type: 'maven'
+                 sh "${MAVEN_HOME}/bin/mvn clean package" //构建maven项目
+              }
             }
         }
         stage('Deploy') {
