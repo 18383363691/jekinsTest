@@ -1,19 +1,9 @@
 
 pipeline {
-    agent {
-       docker {
-             image 'docker:dind'
-             args [  // 使用列表形式最清晰
-                 '--privileged',
-                 '-v /var/run/docker.sock:/var/run/docker.sock',
-                 '-e DOCKER_TLS_CERTDIR=""'
-             ]
-             registryUrl 'https://index.docker.io/v1/'
-             registryCredentialsId 'docker-creds'
-       }
-    }
+    agent any
     tools {
        maven 'Maven'
+       docker 'docker'
     }
     environment {
            MAVEN_HOME = tool name: 'Maven', type: 'maven'
