@@ -4,8 +4,8 @@ pipeline {
        maven 'Maven'
     }
     environment {
-           MAVEN_HOME='/opt/apache-maven-3.9.11'
-           PATH = "/opt/apache-maven-3.9.11/bin:${PATH}"
+           MAVEN_HOME = tool name: 'Maven', type: 'maven'
+           PATH = "${env.PATH}:${tool name: 'Maven', type: 'maven'}/bin"
            GIT_SSL_NO_VERIFY = "1"
 
     }
@@ -24,8 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-
-                 sh "/opt/apache-maven-3.9.11/bin/mvn clean package" //构建maven项目
+                 sh "${MAVEN_HOME}/bin/mvn clean package" //构建maven项目
             }
         }
         stage('Deploy') {
