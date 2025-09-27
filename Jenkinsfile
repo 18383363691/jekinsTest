@@ -1,9 +1,9 @@
 pipeline {
     agent any
-
     environment {
-        PATH = tool 'Maven'
+           PATH = "${MAVEN_HOME}/bin:${PATH}"
     }
+
 
     stages {
         stage('Checkout') {
