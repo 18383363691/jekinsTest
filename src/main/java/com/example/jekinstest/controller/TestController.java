@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping("/hello")
     public String sayHello(String name){
-        return "welcome "+name+" to visit";
+        return "welcome "+name+" to visit my page";
     }
 }
