@@ -6,6 +6,7 @@ pipeline {
     environment {
            MAVEN_HOME='/opt/apache-maven-3.9.11'
            PATH = "/opt/apache-maven-3.9.11/bin:${PATH}"
+           GIT_SSL_NO_VERIFY = "1"
 
     }
 
@@ -14,8 +15,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'master',url:'https://github.com/18383363691/jekinsTest.git' // 修改为你的仓库 URL
-            }
+               retry(3) {
+                   checkout([$class: 'GitSCM',
+                           branches: [[name: '*/master']],
+                           extensions: [[$class: 'CloneOption', timeout: 30]],
+                           userRemoteConfigs: [[url: 'https://github.com/18383363691/jekinsTest.git']]
+                   ])
+               }
         }
         stage('Build') {
             steps {
