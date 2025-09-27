@@ -19,6 +19,7 @@ pipeline {
            MAVEN_HOME = tool name: 'Maven', type: 'maven'
            PATH = "${env.PATH}:${tool name: 'Maven', type: 'maven'}/bin"
            GIT_SSL_NO_VERIFY = "1"
+           GIT_HTTP_VERSION = "1.1"
     }
     stages {
         stage('Checkout') {
