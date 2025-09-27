@@ -9,9 +9,6 @@ pipeline {
            GIT_SSL_NO_VERIFY = "1"
 
     }
-
-
-
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +19,9 @@ pipeline {
                            userRemoteConfigs: [[url: 'https://github.com/18383363691/jekinsTest.git']]
                    ])
                }
+            }
         }
+
         stage('Build') {
             steps {
 
