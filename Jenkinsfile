@@ -29,7 +29,16 @@ pipeline {
                            userRemoteConfigs: [[url: 'https://github.com/18383363691/jekinsTest.git']]
                    ])
                }
-            }
+            }agent {
+   docker {
+         image 'docker:dind'
+         args """--privileged
+               -v /var/run/docker.sock:/var/run/docker.sock
+               -e DOCKER_TLS_CERTDIR="""  // 禁用TLS验证
+         registryUrl 'https://index.docker.io/v1/'
+         registryCredentialsId 'docker-creds'
+   }
+}
         }
 
         stage('Build') {
