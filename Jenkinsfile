@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-               sh "java -jar target/jekinsTest-0.0.1-SNAPSHOT.jar"
+               sh "nohub java -jar target/jekinsTest-0.0.1-SNAPSHOT.jar "
 
             }
         }
