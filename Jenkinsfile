@@ -35,7 +35,7 @@ pipeline {
         stage('Build') {
             steps {
                  script{
-                    sh '/usr/bin/docker version'
+                    sh 'docker version'
                     def image=docker.build("simple-web:latest")
                  }
             }
