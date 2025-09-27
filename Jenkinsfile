@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    tools{
+       maven 'Maven'
+    }
     environment {
            MAVEN_HOME='/opt/apache-maven-3.9.11'
            PATH = "/opt/apache-maven-3.9.11/bin:${PATH}"
 
     }
+
 
 
     stages {
@@ -15,9 +19,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script{
-                 sh "${MAVEN_HOME}/bin/mvn clean package" //构建maven项目
-              }
+
+                 sh "mvn clean package" //构建maven项目
             }
         }
         stage('Deploy') {
