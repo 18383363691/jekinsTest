@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'main',url:'https://github.com/18383363691/jekinsTest.git' // 修改为你的仓库 URL
+                git branch:'master',url:'https://github.com/18383363691/jekinsTest.git' // 修改为你的仓库 URL
             }
         }
         stage('Build') {
