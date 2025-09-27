@@ -17,4 +17,8 @@ public class TestController {
     public String sayHello(String name){
         return "welcome "+name+" to visit my page";
     }
+    @GetMapping("/goodbye")
+    public String sayGoodbye(){
+        return "welcome last time visit my page";
+    }
 }
