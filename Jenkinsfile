@@ -1,8 +1,13 @@
 pipeline {
     agent {
        docker{
-          image 'docker:latest'
-          args '-v /var/run/docker.sock:/var/run/docker.sock'
+                 image 'docker:dind'  // 使用Docker-in-Docker镜像
+                 args '--privileged
+                       -v /usr/bin/docker:/usr/bin/docker
+                       -v /var/run/docker.sock:/var/run/docker.sock
+                       -e DOCKER_TLS_CERTDIR=""'  // 禁用TLS验证
+                 registryUrl 'https://index.docker.io/v1/'
+                 registryCredentialsId 'docker-creds'
        }
     }
     tools{
