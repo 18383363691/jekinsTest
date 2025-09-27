@@ -24,12 +24,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                 sh "${MAVEN_HOME}/bin/mvn clean package" //构建maven项目
+                 script{
+                    sh 'docker version'
+                    def image=docker.build("simple-web:latest")
+                 }
             }
         }
         stage('Deploy') {
             steps {
-               sh "nohup java -jar target/jekinsTest-0.0.1-SNAPSHOT.jar" returnStatus: true
+            //   sh "nohup java -jar target/jekinsTest-0.0.1-SNAPSHOT.jar" returnStatus: true
+                script{
+                    sh 'docker rm -f simple-web ||true'
+                    docker.image("simple-web:latest").run("-d -p 8081:8081 --name simple-web")
+                }
 
             }
         }
